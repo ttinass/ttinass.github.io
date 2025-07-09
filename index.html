@@ -112,9 +112,10 @@
             Telegram.WebApp.sendData(JSON.stringify(formData));
 
             // Показываем подтверждение
-            tg.showAlert('Спасибо за заказ! Мы скоро с вами свяжемся.', () => {
+            tg.showAlert('Спасибо за заказ! Мы скоро с вами свяжемся.');
+            setTimeout(() => {
                 tg.close();
-            });
+            }, 1500);
         });
     });
 </script>
