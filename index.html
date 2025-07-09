@@ -85,8 +85,6 @@
 
         orderButton.addEventListener("click", () => {
             // Получаем данные формы
-            const tg = window.Telegram.WebApp;
-
             const formData = {
                 name: document.getElementById("user_name").value.trim(),
                 email: document.getElementById("user_email").value.trim(),
@@ -106,11 +104,11 @@
                 errorDiv.textContent = 'Номер телефона должен содержать минимум 5 символов';
                 return;
             }
-            
+
 
             // Отправляем данные в Telegram
             console.log("Отправляем данные:", formData);
-            tg.sendData(JSON.stringify(formData));
+            Telegram.WebApp.sendData(JSON.stringify(formData));
 
             // Показываем подтверждение
             tg.showAlert('Спасибо за заказ! Мы скоро с вами свяжемся.', () => {
