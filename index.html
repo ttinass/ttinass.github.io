@@ -49,7 +49,7 @@
     </div>
 </footer>
 
-<script src="https://telegram.org/js/telegram-web-app.js?58"></script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const tg = window.Telegram.WebApp;
@@ -108,8 +108,8 @@
 
             // Отправляем данные в Telegram
             console.log("Отправляем данные:", JSON.stringify(formData));
-            // Telegram.WebApp.showAlert("Отправляю данные в Telegram");
-            Telegram.WebApp.sendData(JSON.stringify(formData));
+            // tg.showAlert("Отправляю данные в Telegram");
+            tg.sendData(JSON.stringify(formData));
 
             // Показываем подтверждение
             tg.showAlert('Спасибо за заказ! Мы скоро с вами свяжемся.');
