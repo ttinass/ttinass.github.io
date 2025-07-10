@@ -106,16 +106,38 @@
             }
 
 
-            // Отправляем данные в Telegram
-            console.log("Отправляем данные:", JSON.stringify(formData));
-            // tg.showAlert("Отправляю данные в Telegram");
-            tg.sendData(JSON.stringify(formData));
+           // Получаем web_app_query_id из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryId = urlParams.get("web_app");
 
-            // Показываем подтверждение
-            tg.showAlert('Спасибо за заказ! Мы скоро с вами свяжемся.');
-            setTimeout(() => {
+            // Отправляем данные в бота
+            fetch(`https://api.telegram.org/bot7605134423:AAENlyMw8GubNhc9coH-MyKBHlAJicf-v1o/answerWebAppQuery`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    web_app_query_id: queryId,
+                    results: [{
+                        type: "article",
+                        id: "1",
+                        title: "Ваш заказ",
+                        input_message_content: {
+                            message_text: `Имя: ${formData.name}\nEmail: ${formData.email}\nТелефон: ${formData.phone}`
+                        }
+                    }]
+                })
+            }).then(() => {
                 tg.close();
-            }, 1500);
+            });
+            // // Отправляем данные в Telegram
+            // console.log("Отправляем данные:", JSON.stringify(formData));
+            // // tg.showAlert("Отправляю данные в Telegram");
+            // tg.sendData(JSON.stringify(formData));
+
+            // // Показываем подтверждение
+            // tg.showAlert('Спасибо за заказ! Мы скоро с вами свяжемся.');
+            // setTimeout(() => {
+            //     tg.close();
+            // }, 1500);
         });
     });
 </script>
